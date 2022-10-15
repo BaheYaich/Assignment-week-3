@@ -2,7 +2,7 @@
 // Declaring game input choices 
 const gameInputs = ["Rock", "Paper", "Scissors"];
 let computerSelection;
-let playerSelection;
+let playerSelection = "";
 let score = 0;
 let wins = 0;
 let losses = 0;
@@ -19,6 +19,7 @@ function computerPlay() {
 function gameRound (playerSelection, computerSelection) {
     //Game inputs
     computerSelection = computerPlay().toLowerCase();
+    // Should insert a prompt validation loop
     playerSelection = window.prompt("Rock, Paper or Scissors?").toLowerCase();
 
     // Game logic
@@ -59,6 +60,7 @@ function game() {
         else if (losses === 3){
             break
         }
+        // Should introduce a scenario when the window prompt is null
     }
     // Score decides the game's outcome
     if (score === 0) {
