@@ -12,7 +12,7 @@ let gameRounds = true;
 // Computer logic
 function computerPlay() {
     randomInput = Math.floor(Math.random() * gameInputs.length);
-    console.log(randomInput, gameInputs[randomInput]);
+    // console.log(randomInput, gameInputs[randomInput]);
     return gameInputs[randomInput];
 };
 
@@ -44,6 +44,7 @@ function gameRound (playerSelection, computerSelection) {
             break
     }
     console.log("Player score = ", score);
+    console.log(gameOutcome);
     // Game outcome
     return gameOutcome;
 };
