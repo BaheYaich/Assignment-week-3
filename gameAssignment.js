@@ -6,14 +6,12 @@ let computerSelection,
     wins = 0,
     losses = 0,
     gameOutcome,
-    gameRounds = true,
-    errorMessage = "Invalid input, please restrict your choices to rock, paper or scissors",
-    validator = true;
-
+    gameRounds = true;
+    
 // Computer logic
 function computerPlay() {
     randomInput = Math.floor(Math.random() * gameInputs.length);
-    // console.log(randomInput, gameInputs[randomInput]);
+    // Cheat codes: console.log(randomInput, gameInputs[randomInput]);
     return gameInputs[randomInput];
 };
 
@@ -23,10 +21,13 @@ function gameRound (playerSelection, computerSelection) {
 
     // Input validation
     do {
-        playerSelection = window.prompt("Rock, Paper or Scissors?").toLowerCase();
+        playerSelection = prompt("Rock, Paper or Scissors?");
+        if (playerSelection === null) {
+            console.log("You have chosen to abandon the game, please don't, there is no escape");
+        }
     }
-    while ((!(gameInputs.includes(playerSelection))) || (playerSelection === null));
-
+    while(playerSelection == null || !(gameInputs.includes(playerSelection.toLowerCase())));    
+    playerSelection = playerSelection.toLowerCase();
 
     // Game logic
     switch (playerSelection + computerSelection) {
@@ -66,7 +67,6 @@ function game() {
         else if (losses === 3){
             break
         }
-        // Should introduce a scenario when the window prompt is null
     }
     // Score decides the game's outcome
     if (score === 0) {
