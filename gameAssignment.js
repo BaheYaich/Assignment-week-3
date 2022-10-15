@@ -19,7 +19,7 @@ function computerPlay() {
 function gameRound (playerSelection, computerSelection) {
     //Game inputs
     computerSelection = computerPlay().toLowerCase();
-    // Should insert a prompt validation loop
+    // Should insert a prompt validation loop using the gameInputs array
     playerSelection = window.prompt("Rock, Paper or Scissors?").toLowerCase();
 
     // Game logic
