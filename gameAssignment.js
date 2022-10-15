@@ -1,13 +1,14 @@
 
 // Declaring game input choices 
-const gameInputs = ["Rock", "Paper", "Scissors"];
-let computerSelection;
-let playerSelection = "";
-let score = 0;
-let wins = 0;
-let losses = 0;
-let gameOutcome;
-let gameRounds = true;
+const gameInputs = ["rock", "paper", "scissors"];
+let computerSelection,
+    score = 0,
+    wins = 0,
+    losses = 0,
+    gameOutcome,
+    gameRounds = true,
+    errorMessage = "Invalid input, please restrict your choices to rock, paper or scissors",
+    validator = true;
 
 // Computer logic
 function computerPlay() {
@@ -19,8 +20,13 @@ function computerPlay() {
 function gameRound (playerSelection, computerSelection) {
     //Game inputs
     computerSelection = computerPlay().toLowerCase();
-    // Should insert a prompt validation loop using the gameInputs array
-    playerSelection = window.prompt("Rock, Paper or Scissors?").toLowerCase();
+
+    // Input validation
+    do {
+        playerSelection = window.prompt("Rock, Paper or Scissors?").toLowerCase();
+    }
+    while ((!(gameInputs.includes(playerSelection))) || (playerSelection === null));
+
 
     // Game logic
     switch (playerSelection + computerSelection) {
@@ -52,7 +58,7 @@ function gameRound (playerSelection, computerSelection) {
 
 function game() {
     for (let i = 0; i < 5; i++) {
-        gameRound(); 
+        gameRound();
         // Best of five mechanic
         if (wins === 3) {
             break
