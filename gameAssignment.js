@@ -1,83 +1,54 @@
 
-// Declaring game input choices 
+// Declarations
 const gameInputs = ["rock", "paper", "scissors"];
-let computerSelection,
-    score = 0,
-    wins = 0,
-    losses = 0,
-    gameOutcome,
-    gameRounds = true;
-    
-// Computer logic
-function computerPlay() {
-    randomInput = Math.floor(Math.random() * gameInputs.length);
-    // Cheat codes: console.log(randomInput, gameInputs[randomInput]);
-    return gameInputs[randomInput];
-};
+const resultDisplay = document.querySelector('#result')
+const choicesDisplay = document.querySelector('#choices')
+const scoreDisplay = document.querySelector('#score')
+let score = 0;
 
-function gameRound (playerSelection, computerSelection) {
-    //Game inputs
-    computerSelection = computerPlay().toLowerCase();
+// Handling clicking event
+const handleClick = (e) => {
+    const playerSelection = e.target.innerHTML
+    const computerSelection = gameInputs[Math.floor(Math.random() * gameInputs.length)]
+    getResults(playerSelection, computerSelection)
+}
+gameInputs.forEach(choice => {
+    const button = document.createElement('button')
+    button.classList.add("choice")
+    button.innerHTML = choice
+    button.addEventListener('click', handleClick)
+    choicesDisplay.appendChild(button)
+});
 
-    // Input validation
-    do {
-        playerSelection = prompt("Rock, Paper or Scissors?");
-        if (playerSelection === null) {
-            console.log("You have chosen to abandon the game, please don't, there is no escape");
-        }
-    }
-    while(playerSelection == null || !(gameInputs.includes(playerSelection.toLowerCase())));    
-    playerSelection = playerSelection.toLowerCase();
-
-    // Game logic
+// Game logic
+const getResults = (playerSelection, computerSelection) => {
     switch (playerSelection + computerSelection) {
         case 'scissorspaper':
         case 'rockscissors':
         case 'paperrock':
             gameOutcome = 'YOU WIN! You chose ' + playerSelection + ' and the computer chose ' + computerSelection
+            resultDisplay.innerHTML = gameOutcome;
             score += 1;
-            wins += 1;
+            scoreDisplay.innerHTML = "Running score " + score
             break
         case 'paperscissors':
         case 'scissorsrock':
         case 'rockpaper':
             gameOutcome = 'YOU LOSE! You chose ' + playerSelection + ' and the computer chose ' + computerSelection
-            score -= 1;
-            losses += 1;
+            resultDisplay.innerHTML = gameOutcome;
+            scoreDisplay.innerHTML = "Running score " + score
             break
         case 'scissorsscissors':
         case 'rockrock':
         case 'paperpaper':
             gameOutcome = 'ITS A DRAW! You chose ' + playerSelection + ' and the computer chose ' + computerSelection
+            resultDisplay.innerHTML = gameOutcome;
+            scoreDisplay.innerHTML = "Running score " + score
             break
     }
-    console.log("Player score = ", score);
-    console.log(gameOutcome);
-    // Game outcome
-    return gameOutcome;
+    // Ending game condition and reset
+    if (score === 5) {
+        alert("Congratulations, you have won five rounds");
+        score = 0;
+    }
 };
-
-function game() {
-    for (let i = 0; i < 5; i++) {
-        gameRound();
-        // Best of five mechanic
-        if (wins === 3) {
-            break
-        }
-        else if (losses === 3){
-            break
-        }
-    }
-    // Score decides the game's outcome
-    if (score === 0) {
-        console.log("Draw, It's inconclusive")
-    }
-    else if (score > 0) {
-        console.log("You won the best of five")
-    }      
-    else if (score < 0) {
-        console.log("You lost the best of five")
-    }    
-};
-
-game();

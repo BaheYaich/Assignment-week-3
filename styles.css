@@ -1,0 +1,34 @@
+.choices-container {
+    display: grid;
+    place-items: center;
+    position: relative;
+    top: 40vh;
+    padding: 2rem;
+}
+.choices-container > h1 {
+    font-size: 24px;
+    font-weight: 700;
+}
+.choices-container > h2, .choices-container > h3 {
+    margin-bottom: 0;
+}
+.choices-container #choices {
+    display: flex;
+    gap: 1rem;
+}
+.choices-container .choice {
+    display: inline-block;
+    text-transform: capitalize;
+    padding: 6px 12px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    touch-action: manipulation;
+    cursor: pointer;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
